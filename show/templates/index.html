@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="{% static "jquery-3.4.1.min.js" %}"></script>
+    <script>
+        $(document).ready(function () {
+             $('#get_res').click(function () {
+                 var src=$('#in').val();
+                 var lab=$('#lab').val();
+                 $.getJSON('{% url 'show:get_res' %}',{'src':src,'lab':lab},function (ret) {
+                     $('#out').val(ret.tgt)
+                 })
+             })
+         })
+    </script>
+</head>
+<body>
+<h>INPUT</h>
+<p></p>
+<textarea id="in" rows=5 cols=40 style="background-color: antiquewhite ;font-size: 20px;color:black"></textarea>
+<p></p>
+<textarea id="lab" rows="1" cols="20" style="background-color: antiquewhite ;font-size: 20px;color:black"></textarea>
+<p></p>
+<input id="get_res" type="submit">
+<p></p>
+<textarea id="out" rows=5 cols=40 style="background-color: antiquewhite ;font-size: 20px;color:black"readonly="readonly"></textarea>
+</body>
+</html>
